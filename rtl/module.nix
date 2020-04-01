@@ -5,7 +5,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  nodeParamsType = lib.types.submodule ({ lib, ... }: {
+  nodeParamsType = lib.types.submodule ({ lib, ... }: { options = {
     name = lib.mkOption {
       type = lib.types.str;
       description = ''
@@ -37,7 +37,7 @@ let
         '';
       };
     };
-  });
+  };});
 
   mkNode = index: nodeParams: {
     inherit index;
