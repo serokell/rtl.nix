@@ -24,13 +24,13 @@ let
 
     authentication = {
       macaroonPath = lib.mkOption {
-        type = lib.types.path;
+        type = lib.types.str;
         description = ''
           Path the the folder containing `access.macaroon` file from cl-rest server.
         '';
       };
       configPath = lib.mkOption {
-        type = lib.types.nullOr lib.types.path;
+        type = lib.types.nullOr lib.types.str;
         default = null;
         description = ''
           File path of the c-lightning config file, if RTL server is local to the c-lightning server
