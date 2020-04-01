@@ -17,6 +17,14 @@
         '';
       };
 
+      openFirewall = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = ''
+          Whether to open <literal>port</literal> and <literal>docPort</literal> in the firewall.
+        '';
+      };
+
       docPort = lib.mkOption {
         type = lib.types.int;
         default = 4001;
@@ -65,6 +73,8 @@
           "CL_REST_STATE_DIR=${stateDir}"
         ];
       };
+
+      networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port cfg.docPort ];
 
       systemd.tmpfiles.rules = [
         # https://www.freedesktop.org/software/systemd/man/tmpfiles.d.html
