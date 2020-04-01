@@ -43,14 +43,6 @@
           Control for more detailed log info.
         '';
       };
-
-      rpcCommands = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ "*" ];
-        description = ''
-          Enable additional RPC commands for `/rpc` endpoint.
-        '';
-      };
     };
   };
 
@@ -63,7 +55,6 @@
         rest-docport=${toString cfg.docPort}
         rest-protocol=${cfg.protocol}
         rest-execmode=${cfg.execMode}
-        rest-rpccommands=${lib.concatStringsSep "," cfg.rpcCommands}
       '';
     in lib.mkIf cfg.enable {
       services.clightning = { inherit extraConfig; };
