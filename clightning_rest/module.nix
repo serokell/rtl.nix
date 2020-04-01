@@ -56,13 +56,19 @@
         rest-protocol=${cfg.protocol}
         rest-execmode=${cfg.execMode}
       '';
+      stateDir = "/var/lib/cl-rest";
     in lib.mkIf cfg.enable {
       services.clightning = { inherit extraConfig; };
       systemd.services.clightning = {
         path = [ pkgs.openssl ];
         serviceConfig.Environment = [
-          "CL_REST_STATE_DIR=/var/lib/cl-rest"
+          "CL_REST_STATE_DIR=${stateDir}"
         ];
       };
+
+      systemd.tmpfiles.rules = [
+        # https://www.freedesktop.org/software/systemd/man/tmpfiles.d.html
+        "d ${stateDir} 0700 clightning clightning"
+      ];
     };
 }
