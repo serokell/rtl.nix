@@ -118,8 +118,8 @@ in
           ExecStart = "${pkgs.nodejs}/bin/node ${pkgs.rtl}/rtl.js";
           DynamicUser = true;
           Restart = "on-failure";
+          StateDirectory = "rtl";
 
-          PrivateTmp = true;
           PrivateDevices = true;
           ProtectSystem = "strict";
           ProtectHome = "read-only";
