@@ -39,6 +39,8 @@ let
     };
   };});
 
+  stateDir = "/var/lib/rtl";
+
   mkNode = index: nodeParams: {
     inherit index;
     lnImplementation = "CLT";
@@ -47,7 +49,8 @@ let
     Settings = {
       userPersona = "OPERATOR";
       themeMode = "NIGHT";
-      enableLogging = true;
+      enableLogging = false;
+      channelBackupPath = "${stateDir}/backup/${index}";
       fiatConversion = false;
       lnServerUrl = nodeParams.url;
     };
