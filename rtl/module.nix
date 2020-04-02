@@ -50,7 +50,7 @@ let
       userPersona = "OPERATOR";
       themeMode = "NIGHT";
       enableLogging = false;
-      channelBackupPath = "${stateDir}/backup/${index}";
+      channelBackupPath = "${stateDir}/backup/${toString index}";
       fiatConversion = false;
       lnServerUrl = nodeParams.url;
     };
