@@ -6,20 +6,18 @@
 
 let
   inherit (builtins) fetchTarball;
-
-  version = "0.2.2";
-  sha256 = "1bwag3dx21lg3xkrcp4f4r50j812vrg5izaghai7ns3n1yfi7ql6";
 in
 
 bp.buildNpmPackage rec {
-  version = "0.2.2";
+  version = "0.3.0";
   src = fetchTarball {
     url = "https://github.com/Ride-The-Lightning/c-lightning-rest/archive/v${version}.tar.gz";
+    sha256 = "10gfrqhqa7gf1r74dvhpsrgzsl9h7zy007ij3zspi00j5rhhchbq";
   };
   patches = [
     (pkgs.fetchpatch {
-      url = "https://patch-diff.githubusercontent.com/raw/Ride-The-Lightning/c-lightning-REST/pull/37.diff";
-      sha256 = "1c9v8fl9l65b40xx4xmz5x60bqlpxhc7pbfqncfhz0db4z9g2dm6";
+      url = "https://patch-diff.githubusercontent.com/raw/Ride-The-Lightning/c-lightning-REST/pull/38.diff";
+      sha256 = "1xyr62livd0vcawwdkilsgssx2bdwzzs7n8ycypk95xyvxi6q66z";
     })
   ];
 }
